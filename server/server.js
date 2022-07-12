@@ -42,4 +42,16 @@ io.of("/").on("connect", (socket) => {
         console.log("\n=============== Trace ===============");
         console.log(io.of("/"));
     });
+
+    socket.on("wsp", (data) => {
+       console.log("\n%s", data);
+      var socket_id = null;
+      for(const [key, value] of io.of("/").sockets){
+            if(value.username === data.receiver){
+                socket_id = key;
+            }
+           if(socket_id !== null){
+               io.of("/").sockets[socket_id].emit("wsp", data);
+           }
+      }    
 });

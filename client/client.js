@@ -28,14 +28,29 @@ const rl = readline.createInterface({
 
 rl.on("line", (input) => {
     if(input.startsWith("/") === true){
-        var str = input.slice(1);
-        switch(str){
-            case "ls":
+        var strArr = input.split(" ");
+        var command = str[0]
+        switch(command){
+            case "/ls":
                 socket.emit("list", {"sender": username, "action": "list"});
-            case "quit":
+                break;
+            case "/quit":
                 socket.emit("quit", {"sender": username, "action": "quit"});
-            case "trace":
+                break;
+            case "/trace":
                 socket.emit("trace");
+                break;
+            case "/wsp":
+               var msg = strArr.slice(2).join(" ");
+               socket.emit("wsp", {"sender": username, "action": "wsp", "receiver": strArr[1], "msg": msg});
+            case "/help":
+                console.log("/ls - list users");
+                console.log("/quit - quit");
+                console.log("/trace - trace");
+                console.log("/help - help");
+                break;
+            default:
+                console.log("[SERVER]: Unknown command");
         }
     }else{
         var str = input;
@@ -61,4 +76,8 @@ socket.on("list", (data) => {
 
 socket.on("quit", (data) => {
     console.log("[SERVER]: %s left the chat", data.sender);
+});
+
+socket.on("wsp", (data) => {
+    console.log("[%s] wispered: %s", data.sender, data.receiver, data.msg);
 });
