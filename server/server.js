@@ -47,7 +47,7 @@ io.of("/").on("connect", (socket) => {
        console.log("\n%s", data);
       var socket_id = null;
       for(const [key, value] of io.of("/").sockets){
-            if(value.username === data.receiver){
+            if(value.username === data.receiver.toLowerCase()){
                 console.log("Found socket id: %s for user %s", key, value);
                 socket_id = key;
             }
