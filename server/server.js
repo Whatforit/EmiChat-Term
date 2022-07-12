@@ -51,9 +51,9 @@ io.of("/").on("connect", (socket) => {
                 console.log("Found socket id: %s for user %s", key, value);
                 socket_id = key;
             }
-            
+
            if(socket_id !== null){
-               io.sockets.socket(socket_id).emit("wsp", data);
+               io.of("/").sockets.socket(socket_id).emit("wsp", data);
            }
       }
     });
