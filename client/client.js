@@ -1,5 +1,5 @@
 const io = require("socket.io-client");
-const socket = io("node-http-module-production-3865.up.railway.app:8080");
+const socket = io("http://node-http-module-production-3865.up.railway.app");
 const readline = require("readline");
 
 var username = null
