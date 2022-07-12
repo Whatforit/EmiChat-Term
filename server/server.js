@@ -1,5 +1,5 @@
 const port = 80;
-const io = require('socket.io')(port);
+const io = require('socket.io')(port, {allowEIO3: true});
 console.log("Server is listening on port: %d", port);
 
 io.of("/").on("connect", (socket) => {

@@ -1,10 +1,14 @@
 const io = require("socket.io-client");
-const socket = io("http://node-http-module-production-3865.up.railway.app");
+const socket = io("https://node-http-module-production-3865.up.railway.app:80");
 const readline = require("readline");
 
 var username = null
 
 console.log("Connecting to server...");
+
+socket.on("connect_error", (err) => {
+    console.log(`connect_error due to ${err.message}`);
+  });
 
 socket.on("connect", () => {
     username = process.argv[2];
