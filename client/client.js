@@ -1,5 +1,6 @@
 const io = require("socket.io-client");
-const socket = io("http://emichat-term-production.up.railway.app:3000");
+const socket = io("http://emichat-term-production.up.railway.app:80");
+//const socket = io("http://localhost:3000")
 const readline = require("readline");
 
 var username = null
