@@ -48,6 +48,7 @@ io.of("/").on("connect", (socket) => {
       var socket_id = null;
       for(const [key, value] of io.of("/").sockets){
             if(value.username === data.receiver){
+                console.log("Found socket id: %s for user %s", key, value);
                 socket_id = key;
             }
            if(socket_id !== null){
