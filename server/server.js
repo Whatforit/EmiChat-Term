@@ -13,6 +13,7 @@ io.of("/").on("connect", (socket) => {
     socket.on("disconnect", (reason) => {
         console.log("\nA client disconnected, reason: %s", reason);
         console.log("Number of clients: %d", io.of('/').server.engine.clientsCount);
+        socket.disconnect();
     });
 
     socket.on("join", (data) => {

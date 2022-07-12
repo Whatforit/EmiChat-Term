@@ -18,7 +18,7 @@ socket.on("connect", () => {
     socket.emit("join", {"sender": username, "action": "join"});
 });
 
-socket.on("disconnect", () => {
+socket.on("disconnect", (reason) => {
     console.log("[SERVER]: Disconnected, reason: %s", reason);
 });
 
@@ -61,6 +61,7 @@ rl.on("line", (input) => {
         socket.emit("broadcast", {"sender": username, "action": 
         "broadcast", "message": str});
     }
+    console.log(">");
 });
 
 socket.on("broadcast", (data) => {
@@ -83,5 +84,5 @@ socket.on("quit", (data) => {
 });
 
 socket.on("wsp", (data) => {
-    console.log("[%s] wispered: %s", data.sender, data.receiver, data.msg);
+    console.log("[%s] wispered: %s", data.sender, data.msg);
 });
