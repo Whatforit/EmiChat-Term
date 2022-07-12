@@ -1,6 +1,6 @@
-const port = 80;
+const port = 8080;
 const io = require('socket.io')(port);
-
+console.log("Server is running at web address: %s",  )
 console.log("Server is listening on port: %d", port);
 
 io.of("/").on("connect", (socket) => {
