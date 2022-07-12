@@ -52,7 +52,7 @@ io.of("/").on("connect", (socket) => {
                 socket_id = key;
             }
            if(socket_id !== null){
-               io.of("/").sockets[socket_id].emit("wsp", data);
+               io.sockets.socket(socket_id).emit("wsp", data);
            }
       }
     });
