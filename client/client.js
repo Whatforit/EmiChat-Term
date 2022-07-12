@@ -9,6 +9,7 @@ console.log("Connecting to server...");
 
 socket.on("connect_error", (err) => {
     console.log(`connect_error due to ${err.message}`);
+    
   });
 
 socket.on("connect", () => {
@@ -29,7 +30,7 @@ const rl = readline.createInterface({
 rl.on("line", (input) => {
     if(input.startsWith("/") === true){
         var strArr = input.split(" ");
-        var command = str[0]
+        var command = strArr[0]
         switch(command){
             case "/ls":
                 socket.emit("list", {"sender": username, "action": "list"});
@@ -42,7 +43,9 @@ rl.on("line", (input) => {
                 break;
             case "/wsp":
                var msg = strArr.slice(2).join(" ");
+               console.log("[SERVER]: Sending message to " + strArr[1] + ": " + msg);
                socket.emit("wsp", {"sender": username, "action": "wsp", "receiver": strArr[1], "msg": msg});
+               break;
             case "/help":
                 console.log("/ls - list users");
                 console.log("/quit - quit");
@@ -51,6 +54,7 @@ rl.on("line", (input) => {
                 break;
             default:
                 console.log("[SERVER]: Unknown command");
+                break;
         }
     }else{
         var str = input;
