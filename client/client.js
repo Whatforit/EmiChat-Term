@@ -1,5 +1,5 @@
 const io = require("socket.io-client");
-const socket = io("http://localhost:3000");
+const socket = io("http://node-http-module-production-3865.up.railway.app↗:80");
 const readline = require("readline");
 
 var username = null
